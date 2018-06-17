@@ -1,3 +1,6 @@
+
+[博客地址](http://www.richzjc.top)
+
 # 简介
 
 其实android sdk里面提供的tablayout,能供大多数场景里面使用。
@@ -8,3 +11,27 @@
 # 效果图
 
 ![](http://p8k4f5rra.bkt.clouddn.com/device-2018-06-17-105142.png)
+
+# 使用
+
+    <com.richzjc.library.TabLayout
+            android:id="@+id/tab"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabMode="scrollable"
+            app:tabGravity="center"
+            app:tabIndicatorColor="#1482f0"
+            app:tabIndicatorHeight="3dp"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextColor="#333333"
+            app:tabIndicatorWidth="10dp"
+            app:tabSelectedBold="true"
+            />
+
+# 属性介绍
+
+    tabIndicatorWidth: 描述的是indicator的宽度
+    tabSelectedBold: 描述的是tab选中时是否加粗，默认为true
+    
+
+欢迎大家fork和star
