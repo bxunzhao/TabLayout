@@ -28,7 +28,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 
@@ -42,6 +41,9 @@ buildscript {
     }
 }
 
+tasks.withType(Javadoc).all {
+    enabled = false
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
