@@ -19,6 +19,7 @@
         app:tabTextColor="#333333"
         app:tabIndicatorWidth="10dp"
         app:tabSelectedBold="true"
+        app:tabNeedIndicatorAnim="false"
         />
 
     <android.support.v4.view.ViewPager

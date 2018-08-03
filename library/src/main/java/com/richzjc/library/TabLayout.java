@@ -146,6 +146,7 @@ public class TabLayout extends HorizontalScrollView {
     int mTabGravity;
     int mMode;
     boolean isSelectBold;
+    boolean isNeedIndicatorAnim = true;
 
     private OnTabSelectedListener mSelectedListener;
     private final ArrayList<OnTabSelectedListener> mSelectedListeners = new ArrayList<>();
@@ -194,6 +195,7 @@ public class TabLayout extends HorizontalScrollView {
 
         isSelectBold = a.getBoolean(R.styleable.TabLayout_tabSelectedBold, true);
 
+        isNeedIndicatorAnim = a.getBoolean(R.styleable.TabLayout_tabNeedIndicatorAnim, true);
         mTabStrip.setSelectedIndicatorColor(a.getColor(R.styleable.TabLayout_tabIndicatorColor, 0));
 
         mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a
@@ -1838,27 +1840,35 @@ public class TabLayout extends HorizontalScrollView {
             }
 
             if (startLeft != targetLeft || startRight != targetRight) {
-                ValueAnimator animator = mIndicatorAnimator = new ValueAnimator();
-                animator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
-                animator.setDuration(duration);
-                animator.setFloatValues(0, 1);
-                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animator) {
-                        final float fraction = animator.getAnimatedFraction();
-                        setIndicatorPosition(
-                                AnimationUtils.lerp(startLeft, targetLeft, fraction),
-                                AnimationUtils.lerp(startRight, targetRight, fraction));
-                    }
-                });
-                animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        mSelectedPosition = position;
-                        mSelectionOffset = 0f;
-                    }
-                });
-                animator.start();
+                if (isNeedIndicatorAnim) {
+                    ValueAnimator animator = mIndicatorAnimator = new ValueAnimator();
+                    animator.setInterpolator(AnimationUtils.FAST_OUT_SLOW_IN_INTERPOLATOR);
+                    animator.setDuration(duration);
+                    animator.setFloatValues(0, 1);
+                    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animator) {
+                            final float fraction = animator.getAnimatedFraction();
+                            setIndicatorPosition(
+                                    AnimationUtils.lerp(startLeft, targetLeft, fraction),
+                                    AnimationUtils.lerp(startRight, targetRight, fraction));
+                        }
+                    });
+                    animator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            mSelectedPosition = position;
+                            mSelectionOffset = 0f;
+                        }
+                    });
+                    animator.start();
+                }else{
+                    setIndicatorPosition(
+                            AnimationUtils.lerp(startLeft, targetLeft, 1),
+                            AnimationUtils.lerp(startRight, targetRight, 1));
+                    mSelectedPosition = position;
+                    mSelectionOffset = 0f;
+                }
             }
         }
 
