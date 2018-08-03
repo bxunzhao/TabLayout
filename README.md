@@ -26,12 +26,13 @@
             app:tabTextColor="#333333"
             app:tabIndicatorWidth="10dp"
             app:tabSelectedBold="true"
+            app:tabNeedIndicatorAnim="false"
             />
 
 # 属性介绍
 
     tabIndicatorWidth: 描述的是indicator的宽度
     tabSelectedBold: 描述的是tab选中时是否加粗，默认为true
-    
+    tabNeedIndicatorAnim: 描述tab在切换的时候indicator是否需要添加动画，默认为true是需要添加动画的
 
 欢迎大家fork和star
