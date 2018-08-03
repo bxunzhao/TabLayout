@@ -5,7 +5,7 @@ publish {
     userOrg = 'richzjc'
     groupId = 'com.richzjc'
     artifactId = 'TabLayout'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'Oh hi, this is a nice description for a project, right?'
     website = 'https://github.com/novoda/bintray-release'
 }
