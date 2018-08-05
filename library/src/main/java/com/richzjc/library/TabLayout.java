@@ -160,6 +160,10 @@ public class TabLayout extends HorizontalScrollView {
     private TabLayoutOnPageChangeListener mPageChangeListener;
     private AdapterChangeListener mAdapterChangeListener;
     private boolean mSetupViewPagerImplicitly;
+    private int tabLeftMargin;
+    private int tabTopMargin;
+    private int tabRightMargin;
+    private int tabBottomMargin;
 
     // Pool we use as a simple RecyclerBin
     private final Pools.Pool<TabView> mTabViewPool = new Pools.SimplePool<>(12);
@@ -200,14 +204,26 @@ public class TabLayout extends HorizontalScrollView {
 
         mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a
                 .getDimensionPixelSize(R.styleable.TabLayout_tabPadding, 0);
+
         mTabPaddingStart = a.getDimensionPixelSize(R.styleable.TabLayout_tabPaddingStart,
                 mTabPaddingStart);
+
         mTabPaddingTop = a.getDimensionPixelSize(R.styleable.TabLayout_tabPaddingTop,
                 mTabPaddingTop);
         mTabPaddingEnd = a.getDimensionPixelSize(R.styleable.TabLayout_tabPaddingEnd,
                 mTabPaddingEnd);
         mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.TabLayout_tabPaddingBottom,
                 mTabPaddingBottom);
+
+        tabLeftMargin = a.getDimensionPixelSize(
+                R.styleable.TabLayout_tabLeftMargin, 0);
+        tabTopMargin = a.getDimensionPixelSize(
+                R.styleable.TabLayout_tabTopMargin, 0);
+        tabRightMargin = a.getDimensionPixelSize(
+                R.styleable.TabLayout_tabRightMargin, 0);
+        tabBottomMargin = a.getDimensionPixelSize(
+                R.styleable.TabLayout_tabBottomMargin, 0);
+
 
         mTabTextAppearance = a.getResourceId(R.styleable.TabLayout_tabTextAppearance,
                 R.style.TextAppearance_Design_Tab);
@@ -813,6 +829,11 @@ public class TabLayout extends HorizontalScrollView {
             lp.width = LinearLayout.LayoutParams.WRAP_CONTENT;
             lp.weight = 0;
         }
+
+        lp.leftMargin = tabLeftMargin;
+        lp.topMargin = tabTopMargin;
+        lp.rightMargin = tabRightMargin;
+        lp.bottomMargin = tabBottomMargin;
     }
 
     int dpToPx(int dps) {
@@ -1548,6 +1569,8 @@ public class TabLayout extends HorizontalScrollView {
 
             // Finally update our selected state
             setSelected(tab != null && tab.isSelected());
+
+
         }
 
         private void updateTextAndIcon(@Nullable final TextView textView,
@@ -1862,7 +1885,7 @@ public class TabLayout extends HorizontalScrollView {
                         }
                     });
                     animator.start();
-                }else{
+                } else {
                     setIndicatorPosition(
                             AnimationUtils.lerp(startLeft, targetLeft, 1),
                             AnimationUtils.lerp(startRight, targetRight, 1));

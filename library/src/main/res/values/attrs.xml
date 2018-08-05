@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="TabLayout">
+        <attr name="tabLeftMargin" format="dimension"/>
+        <attr name="tabTopMargin" format="dimension"/>
+        <attr name="tabRightMargin" format="dimension"/>
+        <attr name="tabBottomMargin" format="dimension"/>
         <attr name="tabIndicatorColor" format="color" />
         <attr name="tabIndicatorHeight" format="dimension" />
         <attr name="tabContentStart" format="dimension" />

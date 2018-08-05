@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="tabStyle" parent="TextAppearance.AppCompat">
+
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:background">#1482f0</item>
+
+    </style>
 </resources>
