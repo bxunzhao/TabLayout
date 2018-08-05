@@ -15,6 +15,14 @@ buildscript {
             }
             url "https://dl.bintray.com/richzjc/maven"
         }
+
+        maven {
+            credentials {
+                username properties.getProperty("userName")
+                password properties.getProperty("password")
+            }
+            url Maven + "/nexus/content/repositories/public"
+        }
     }
 
     dependencies {
@@ -37,6 +45,14 @@ allprojects {
                 password properties.getProperty("password")
             }
             url "https://dl.bintray.com/richzjc/maven"
+        }
+
+        maven {
+            credentials {
+                username properties.getProperty("userName")
+                password properties.getProperty("password")
+            }
+            url Maven + "/nexus/content/repositories/public"
         }
 
         mavenCentral()
