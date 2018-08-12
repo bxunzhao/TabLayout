@@ -5,24 +5,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file("local.properties").newDataInputStream())
-        maven {
-            credentials {
-                username properties.getProperty("userName")
-                password properties.getProperty("password")
-            }
-            url "https://dl.bintray.com/richzjc/maven"
-        }
-
-        maven {
-            credentials {
-                username properties.getProperty("userName")
-                password properties.getProperty("password")
-            }
-            url Maven + "/nexus/content/repositories/public"
-        }
     }
 
     dependencies {
@@ -34,27 +16,9 @@ buildscript {
 }
 
 allprojects {
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file("local.properties").newDataInputStream())
     repositories {
         google()
         jcenter()
-        maven {
-            credentials {
-                username properties.getProperty("userName")
-                password properties.getProperty("password")
-            }
-            url "https://dl.bintray.com/richzjc/maven"
-        }
-
-        maven {
-            credentials {
-                username properties.getProperty("userName")
-                password properties.getProperty("password")
-            }
-            url Maven + "/nexus/content/repositories/public"
-        }
-
         mavenCentral()
     }
 }
