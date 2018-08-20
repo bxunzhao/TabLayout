@@ -7,12 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="test"
+        android:background="#1482f0"
+        android:textColor="#134984"
+        />
+
     <com.richzjc.library.TabLayout
         android:id="@+id/tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:tabMode="scrollable"
         app:tabGravity="center"
+        android:layout_marginTop="30dp"
         app:tabSelectedTextColor="#ffffff"
         app:tabTextColor="#999999"
         app:tabPaddingStart="2dp"
