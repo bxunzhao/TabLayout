@@ -934,6 +934,21 @@ public class TabLayout extends HorizontalScrollView {
         mTabStrip.animateIndicatorToPosition(newPosition, ANIMATION_DURATION);
     }
 
+    public void smoothScrollToTab(int newPosition){
+        final int startScrollX = getScrollX();
+        final int targetScrollX = calculateScrollXForTab(newPosition, 0);
+
+        if (startScrollX != targetScrollX) {
+            ensureScrollAnimator();
+
+            mScrollAnimator.setIntValues(startScrollX, targetScrollX);
+            mScrollAnimator.start();
+        }
+
+        // Now animate the indicator
+        mTabStrip.animateIndicatorToPosition(newPosition, ANIMATION_DURATION);
+    }
+
     private void ensureScrollAnimator() {
         if (mScrollAnimator == null) {
             mScrollAnimator = new ValueAnimator();
