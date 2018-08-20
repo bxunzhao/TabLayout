@@ -53,3 +53,19 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+apply plugin: 'maven'
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: Maven + "/nexus/content/repositories/thirdparty/") {
+                authentication(userName: properties.getProperty("userName"), password: properties.getProperty("password"))
+            }
+            pom.version = "1.0.4"
+            pom.artifactId = "Tablayout"
+            pom.groupId = "com.github.richzjc"
+        }
+    }
+}
